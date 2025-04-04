@@ -489,10 +489,10 @@
           for (const c of traffic) {
                switch (c) {
                     case 'I':
-                         res.push({ code: c, description: 'IFR Traffic' });
+                         res.push({ code: c, description: 'IFR' });
                          break;
                     case 'V':
-                         res.push({ code: c, description: 'VFR Traffic' });
+                         res.push({ code: c, description: 'VFR' });
                          break;
                     case 'K':
                          res.push({ code: c, description: 'Checklist' });
@@ -695,7 +695,7 @@
                text: e
           };
 
-          console.log(e);
+          // console.log(e);
 
           //search for circles
           if (e.search('RADIUS') != -1) {
