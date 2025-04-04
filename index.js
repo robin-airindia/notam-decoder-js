@@ -1,30 +1,14 @@
 const notamDecoder = require('./notam-decoder');
 
-// const notamMessage = `
-// Q) EGTT/QMRLC/IV/NBO/A/000/999/5120N00045W005
-// A) EGLL
-// B) 2304010600
-// C) 2304011800
-// E) RUNWAY 09L/27R CLOSED DUE TO MAINTENANCE
-// `;
+// Read the NOTAM message from the command-line arguments
+const rawNotamMessage = process.argv.slice(2).join(' ');
 
-const notamMessage = `
-ZCZC AID0010 180245 
-GG VABBIADX
-180245 WSSSYNYX
-(A3239/24 NOTAMN
-Q)WSJC/QFAXX/IV/BO/A/000/999/0122N10359E005
-A)WSSS B)2409180239 C)PERM
-E)REF AIP SINGAPORE, AERODROME CHART AD-2-WSSS-ADC-2, AMEND TABLE AS
-FOLLOWS:
-I) RWY 02L - GEOID UNDULATION TO READ AS 10.23M
-II) RWY 20R (DISP THR) - THR COORDINATES TO READ AS 012234.02N
-1035920.09E, AND GEOID UNDULATION TO READ AS 10.26M
-REST NC.)
+if (!rawNotamMessage) {
+    console.error('Error: Please provide a raw NOTAM message as an argument.');
+    process.exit(1); // Exit with an error code
+}
 
+const decodedNotam = notamDecoder.decode(rawNotamMessage);
 
-NNNN
-`;
-
-const decodedNotam = notamDecoder.decode(notamMessage);
-console.log('Decoded NOTAM (JSON):', JSON.stringify(decodedNotam, null, 2));
+// Output the decoded NOTAM as a JSON string
+console.log(JSON.stringify(decodedNotam, null, 2));
