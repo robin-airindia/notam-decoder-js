@@ -543,12 +543,12 @@
                     const type = cols[1];
                     obj.type = type;
                     if (type === 'NOTAMN') {
-                         obj.typeDesc = 'New NOTAM';
+                         obj.typeDesc = 'New';
                     } else if (type === 'NOTAMR') {
-                         obj.typeDesc = 'Replacement NOTAM';
+                         obj.typeDesc = 'Replacement';
                          obj.idToReplace = cols[2];
                     } else if (type === 'NOTAMC') {
-                         obj.typeDesc = 'Cancellation NOTAM';
+                         obj.typeDesc = 'Cancellation';
                          obj.idToCancel = cols[2];
                     }
                }
