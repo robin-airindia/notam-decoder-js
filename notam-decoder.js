@@ -654,18 +654,23 @@
                }
           }
           // validityEnd
-          const cCols = c.split(' ');
-          if (cCols.length > 0) {
-               if (cCols[0] == 'PERM') {
-                    res.permanent = true;
-               } else {
-                    res.validityEnd = getISODateString(cCols[0], 'YYMMDDHHmm');
-               }
-               if (cCols.length > 1) {
-                    if (cCols[1] == 'EST') {
-                         res.estimated = true;
+          if (c) {
+               const cCols = c.split(' ');
+               if (cCols.length > 0) {
+                    if (cCols[0] == 'PERM') {
+                         res.permanent = true;
+                    } else {
+                         res.validityEnd = getISODateString(cCols[0], 'YYMMDDHHmm');
+                    }
+                    if (cCols.length > 1) {
+                         if (cCols[1] == 'EST') {
+                              res.estimated = true;
+                         }
                     }
                }
+          } else {
+               res.error = 'c is undefined';
+               console.error('c is undefined');
           }
 
           if (d) {
